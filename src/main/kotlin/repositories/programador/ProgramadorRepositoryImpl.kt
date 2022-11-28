@@ -4,7 +4,6 @@ import database.HibernateManager
 import database.HibernateManager.manager
 import models.Programador
 import mu.KotlinLogging
-import java.util.UUID
 import javax.persistence.TypedQuery
 
 private val log = KotlinLogging.logger { }
@@ -21,7 +20,7 @@ class ProgramadorRepositoryImpl : ProgramadorRepository {
         return programadores
     }
 
-    override fun findById(id: UUID): Programador? {
+    override fun findById(id: Long): Programador? {
         log.debug { "findById($id)" }
         var programador: Programador? = null
         HibernateManager.query {
@@ -42,7 +41,7 @@ class ProgramadorRepositoryImpl : ProgramadorRepository {
         var result = false
         log.debug { "delete($entity)" }
         HibernateManager.transaction {
-            val programador = manager.find(Programador::class.java, entity.uuid)
+            val programador = manager.find(Programador::class.java, entity.id)
             programador?.let {
                 manager.remove(it)
                 result = true

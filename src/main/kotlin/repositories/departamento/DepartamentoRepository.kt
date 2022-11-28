@@ -1,4 +1,7 @@
 package repositories.departamento
 
-interface DepartamentoRepository {
+import models.Departamento
+import repositories.CrudRepository
+
+interface DepartamentoRepository : CrudRepository<Departamento, Long> {
 }
