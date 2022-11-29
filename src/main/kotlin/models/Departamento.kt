@@ -14,8 +14,7 @@ data class Departamento(
     val id: Long,
     val nombre: String,
     val presupuesto: Double,
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.MERGE], orphanRemoval = true)
-    @JoinColumn
+    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL], orphanRemoval = true)
     var programadores: MutableList<Programador> = mutableListOf()
 ) {
     override fun toString(): String {
